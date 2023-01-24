@@ -244,7 +244,7 @@ export default {
         // write firstName
         const rangeFirstName = ws.getRange("L5");
         rangeFirstName.values = [[this.userDataInfos.firstName]];
-        // write date
+        // write authorization date
         const dateAuthorizationFormat = moment(this.dateAuthorization).toOADate();
         // S5
         const rangeDateAuthorization = ws.getRange("S5");
@@ -264,6 +264,12 @@ export default {
         const rangeDateExpiration = ws.getRange("S8");
         rangeDateExpiration.values = [[dateExpirationFormat]];
         rangeDateExpiration.numberFormat = [["dd/[$-409]mm/yyyy"]];
+        // write lastname + firstName
+        const rangeFullName = ws.getRange("D27");
+        rangeFullName.values = [[this.userDataInfos.lastName + " " + this.userDataInfos.firstName]];
+        // write responsible
+        const rangeResponsible = ws.getRange("F28");
+        rangeResponsible.values = [[this.responsible]];
         return context.sync();
       });
     }
