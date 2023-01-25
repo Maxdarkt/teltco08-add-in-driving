@@ -12,11 +12,6 @@
         <h2 class="text-md font-normal">
           Informations genérales:
         </h2>
-        <!-- Responsible input -->
-        <div class="flex flex-col mt-4">
-          <label for="responsible" class="block mb-2 text-sm font-extralight text-gray-900">Nom et Prénom du Délégant :</label>
-          <input id="responsible" type="text" v-model="responsible" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5" required/>
-        </div>
         <!-- limit date input -->
         <div class="flex flex-col mt-4">
           <label for="limitDate" class="block mb-2 text-sm font-extralight">Date d'expiration (en jrs) :</label>
@@ -76,12 +71,11 @@ export default {
   name: 'App',
   data() {
     return {
-      responsible: "Alexander Heim",
       limitDate: 7,
       rowInput: 3,
       dateAuthorization: Date.now(),
       keyDataInfos : ["isPresent", "team", "lastName", "firstName", "position", "company" ],
-      keyDataDates: [ "workAtHeight", "AIPR", "shotCrete", "scaffoldingReception", "R482CatA", "R482CatB1", "R482CatB2", "R482CatB3"],
+      keyDataDates: [ "workAtHeight", "AIPR", "shotCrete", "scaffoldingReception", "R482CatA", "R482CatB1", "R482CatB2", "R482CatB3", "R482CatC2", "R482CatC1", "R3725", "R482CatC3", "R482CatD", "R482CatE", "R482CatF", "R482CatG", "OptionTMS", "OptionWinch", "R486CatA1A", "R486CatB1B", "R486CatA3A", "R486CatB3B", "R483CatB1B", "R483CatA1A", "R483CatA2A", "R483CatB2B", "R484Cat1", "R484Cat2", "R487Cat1", "R487Cat2", "R487Cat3", "R489Cat1A", "R489Cat1B", "R489Cat2A", "R489Cat2B", "R489Cat3", "R489Cat4", "R489Cat5", "R489Cat6", "R489Cat7", "R485Cat1", "R485Cat2", "R490" ],
       medicalExamination: null,
       medicalExaminationChecked: false,
       userDataInfos: {},
@@ -107,7 +101,7 @@ export default {
       // we define the different addressRange
       const addressMedicalExamination = `G${this.rowInput}:G${this.rowInput}`;
       const addressDataInfos = `A${this.rowInput}:F${this.rowInput}`;
-      const addressDataDates = `I${this.rowInput}:P${this.rowInput}`;
+      const addressDataDates = `I${this.rowInput}:AZ${this.rowInput}`;
 
       // we call functions
       await this.getData("infos", addressDataInfos)
@@ -219,6 +213,12 @@ export default {
     editDocument() {
       const minExamDate = this.calculateMinDate();
       this.writeUserDataInfos(minExamDate);
+      this.writeUserDataDatesSimple();
+      const categoryNames = [ "R486", "R483", "R487", "R485" ];
+
+      categoryNames.forEach(categoryName => {
+        this.prepareUserDataDatesComplex(categoryName);
+      })
       console.log(this.userDataDatesChecked);
       console.log(this.userDataDates);
     },
@@ -237,41 +237,204 @@ export default {
     },
     writeUserDataInfos(minExamDate) {
       window.Excel.run((context) => {
-        // write lastName
         const ws = context.workbook.worksheets.getItem('TEMPLATE');
-        const rangeLastName = ws.getRange("D5");
+        // write lastName
+        const rangeLastName = ws.getRange("D3");
         rangeLastName.values = [[this.userDataInfos.lastName]];
         // write firstName
-        const rangeFirstName = ws.getRange("L5");
+        const rangeFirstName = ws.getRange("L3");
         rangeFirstName.values = [[this.userDataInfos.firstName]];
         // write authorization date
         const dateAuthorizationFormat = moment(this.dateAuthorization).toOADate();
         // S5
-        const rangeDateAuthorization = ws.getRange("S5");
+        const rangeDateAuthorization = ws.getRange("S3");
         rangeDateAuthorization.values = [[dateAuthorizationFormat]];
         rangeDateAuthorization.numberFormat = [["dd/[$-409]mm/yyyy"]];
         // E58
-        const rangeDateDelivered = ws.getRange("E58");
+        const rangeDateDelivered = ws.getRange("E56");
         rangeDateDelivered.values = [[dateAuthorizationFormat]];
         rangeDateDelivered.numberFormat = [["dd/[$-409]mm/yyyy"]];
         // write medical examination
         const dateExaminationMedicalFormat = moment(this.medicalExamination).toOADate();
-        const rangeDateExaminationMedical = ws.getRange("I8");
+        const rangeDateExaminationMedical = ws.getRange("I6");
         rangeDateExaminationMedical.values = [[dateExaminationMedicalFormat]];
         rangeDateExaminationMedical.numberFormat = [["dd/[$-409]mm/yyyy"]];
         // write expiration date
         const dateExpirationFormat = moment(minExamDate).toOADate();
-        const rangeDateExpiration = ws.getRange("S8");
+        const rangeDateExpiration = ws.getRange("S6");
         rangeDateExpiration.values = [[dateExpirationFormat]];
         rangeDateExpiration.numberFormat = [["dd/[$-409]mm/yyyy"]];
         // write lastname + firstName
-        const rangeFullName = ws.getRange("D27");
+        const rangeFullName = ws.getRange("D26");
         rangeFullName.values = [[this.userDataInfos.lastName + " " + this.userDataInfos.firstName]];
-        // write responsible
-        const rangeResponsible = ws.getRange("F28");
-        rangeResponsible.values = [[this.responsible]];
         return context.sync();
       });
+    },
+    writeUserDataDatesSimple() {
+      window.Excel.run((context) => {
+        const ws = context.workbook.worksheets.getItem('TEMPLATE');
+        // write R482 Cat A
+        const rangeR482CatA = ws.getRange("B28");
+        rangeR482CatA.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatA)]];
+        // write R482 Cat B1
+        const rangeR482CatB1 = ws.getRange("B29");
+        rangeR482CatB1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatB1)]];
+        // write R482 Cat B2
+        const rangeR482CatB2 = ws.getRange("B31");
+        rangeR482CatB2.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatB2)]];
+        // write R482 Cat C1
+        const rangeR482CatC1 = ws.getRange("B32");
+        rangeR482CatC1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatC1)]];
+        // write R482 Cat C2
+        const rangeR482CatC2 = ws.getRange("B33");
+        rangeR482CatC2.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatC2)]];
+        // write R482 Cat C3
+        const rangeR482CatC3 = ws.getRange("B34");
+        rangeR482CatC3.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatC3)]];
+        // write R482 Cat D
+        const rangeR482CatD = ws.getRange("B35");
+        rangeR482CatD.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatD)]];
+        // write R482 Cat E
+        const rangeR482CatE = ws.getRange("B36");
+        rangeR482CatE.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatE)]];
+        // write R482 Cat F
+        const rangeR482CatF = ws.getRange("B37");
+        rangeR482CatF.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatF)]];
+        // write option winch (F)
+        const rangeOptionWinch = ws.getRange("C38");
+        rangeOptionWinch.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.OptionWinch)]];
+        // write R482 Cat G
+        const rangeR482CatG = ws.getRange("B39");
+        rangeR482CatG.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatG)]];
+        // write R486 Cat A 1A
+        const rangeR486CatA1A = ws.getRange("E41");
+        rangeR486CatA1A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R486CatA1A)]];
+        // write R486 Cat A 3A
+        const rangeR486CatA3A = ws.getRange("G41");
+        rangeR486CatA3A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R486CatA3A)]];
+        // write R486 Cat B 1B
+        const rangeR486CatB1B = ws.getRange("E42");
+        rangeR486CatB1B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R486CatB1B)]];
+        // write R486 Cat B 3B
+        const rangeR486CatB3B = ws.getRange("G42");
+        rangeR486CatB3B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R486CatB3B)]];
+        // write R483 Cat A 1A
+        const rangeR483CatA1A = ws.getRange("H44");
+        rangeR483CatA1A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R483CatA1A)]];
+        // write R483 Cat A 1B
+        const rangeR483CatB1B = ws.getRange("J44");
+        rangeR483CatB1B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R483CatB1B)]];
+        // write R483 Cat A 2A
+        const rangeR483CatA2A = ws.getRange("H45");
+        rangeR483CatA2A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R483CatA2A)]];
+        // write R483 Cat A 2B
+        const rangeR483CatB2B = ws.getRange("J45");
+        rangeR483CatB2B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R483CatB2B)]];
+        // write R489 Cat 1A
+        const rangeR489Cat1A = ws.getRange("L28");
+        rangeR489Cat1A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat1A)]];
+        // write R489 Cat 1B
+        const rangeR489Cat1B = ws.getRange("L29");
+        rangeR489Cat1B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat1B)]];
+        // write R489 Cat 3
+        const rangeR489Cat3 = ws.getRange("L30");
+        rangeR489Cat3.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat3)]];
+        // write R489 Cat 4
+        const rangeR489Cat4 = ws.getRange("L31");
+        rangeR489Cat4.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat4)]];
+        // write R489 Cat 5
+        const rangeR489Cat5 = ws.getRange("L32");
+        rangeR489Cat5.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat5)]];
+        // write R489 Cat 6
+        const rangeR489Cat6 = ws.getRange("L33");
+        rangeR489Cat6.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat6)]];
+        // write R489 Cat 7
+        const rangeR489Cat7 = ws.getRange("L34");
+        rangeR489Cat7.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat7)]];
+        // write R484 Cat 1
+        const rangeR484Cat1 = ws.getRange("L35");
+        rangeR484Cat1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R484Cat1)]];
+        // write R485 Cat 1
+        const rangeR485Cat1 = ws.getRange("M38");
+        rangeR485Cat1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R485Cat1)]];
+        // write R485 Cat 2
+        const rangeR485Cat2 = ws.getRange("M39");
+        rangeR485Cat2.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R485Cat2)]];
+        // write R487 Cat 1
+        const rangeR487Cat1 = ws.getRange("M41");
+        rangeR487Cat1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R487Cat)]];
+        // write R487 Cat 2
+        const rangeR487Cat2 = ws.getRange("M42");
+        rangeR487Cat2.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R487Cat2)]];
+        // write R487 Cat 3
+        const rangeR487Cat3 = ws.getRange("M43");
+        rangeR487Cat3.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R487Cat3)]];
+        // write R490
+        const rangeR490 = ws.getRange("L44");
+        rangeR490.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R490)]];
+        return context.sync();
+      });
+    },
+    prepareUserDataDatesComplex(categoryName) {
+
+        if(categoryName === "R486") {
+          // we define the arrays with different values for filter
+          const categoryA = [ "R486CatA1A", "R486CatA3A" ];
+          const categoryB = [ "R486CatB1B", "R486CatB3B" ];
+          const category = categoryA.concat(categoryB);
+          // we define if at least one is checked
+          const isCategoryChecked = category.some(item => this.userDataDatesChecked[item])
+          const isCategoryAChecked = categoryA.some(item => this.userDataDatesChecked[item])
+          const isCategoryBChecked = categoryB.some(item => this.userDataDatesChecked[item])
+          // we call write function with address and value
+          this.writeUserDataDatesLoop("B40", isCategoryChecked)
+          this.writeUserDataDatesLoop("C41", isCategoryAChecked)
+          this.writeUserDataDatesLoop("C42", isCategoryBChecked)
+        } else if(categoryName === "R483") {
+          // we define the arrays with different values for filter
+          const categoryA = [ "R483CatA1A", "R483CatA2A" ];
+          const categoryB = [ "R483CatB1B", "R483CatB2B" ];
+          const category = categoryA.concat(categoryB);
+          // we define if at least one is checked
+          const isCategoryChecked = category.some(item => this.userDataDatesChecked[item])
+          const isCategoryAChecked = categoryA.some(item => this.userDataDatesChecked[item])
+          const isCategoryBChecked = categoryB.some(item => this.userDataDatesChecked[item])
+          // we call write function with address and value
+          this.writeUserDataDatesLoop("B43", isCategoryChecked)
+          this.writeUserDataDatesLoop("C44", isCategoryAChecked)
+          this.writeUserDataDatesLoop("C45", isCategoryBChecked)
+        } else if(categoryName === "R485") {
+          // we define the arrays with different values for filter
+          const category = [ "R485Cat1", "R485Cat2" ];
+          // we define if at least one is checked
+          const isCategoryChecked = category.some(item => this.userDataDatesChecked[item])
+          // we call write function with address and value
+          this.writeUserDataDatesLoop("L37", isCategoryChecked)
+        } else if(categoryName === "R487") {
+          // we define the arrays with different values for filter
+          const category = [ "R487Cat1", "R487Cat2", "R487Cat3" ];
+          // we define if at least one is checked
+          const isCategoryChecked = category.some(item => this.userDataDatesChecked[item])
+          // we call write function with address and value
+          this.writeUserDataDatesLoop("L40", isCategoryChecked)
+        } else {
+          console.log('error type category in prepareUserDataDatesComplex')
+        }
+
+    },
+    writeUserDataDatesLoop(address, value) {
+      window.Excel.run((context) => {
+        const ws = context.workbook.worksheets.getItem('TEMPLATE');
+        
+        // write
+        const rangeOptionWinch = ws.getRange(address);
+        rangeOptionWinch.values = [[this.transformBooleanInNumber(value)]];
+
+        return context.sync();
+      })
+    },
+    transformBooleanInNumber(value) {
+      return value === true ? 1 : 0;
     }
   }
 };
