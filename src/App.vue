@@ -76,6 +76,363 @@ export default {
       dateAuthorization: Date.now(),
       keyDataInfos : ["isPresent", "team", "lastName", "firstName", "position", "company" ],
       keyDataDates: [ "workAtHeight", "AIPR", "shotCrete", "scaffoldingReception", "R482CatA", "R482CatB1", "R482CatB2", "R482CatB3", "R482CatC2", "R482CatC1", "R3725", "R482CatC3", "R482CatD", "R482CatE", "R482CatF", "R482CatG", "OptionTMS", "OptionWinch", "R486CatA1A", "R486CatB1B", "R486CatA3A", "R486CatB3B", "R483CatB1B", "R483CatA1A", "R483CatA2A", "R483CatB2B", "R484Cat1", "R484Cat2", "R487Cat1", "R487Cat2", "R487Cat3", "R489Cat1A", "R489Cat1B", "R489Cat2A", "R489Cat2B", "R489Cat3", "R489Cat4", "R489Cat5", "R489Cat6", "R489Cat7", "R485Cat1", "R485Cat2", "R490" ],
+      arrayCategoriesInfos: [
+        {
+          children: false,
+          name: "workAtHeight",
+          value: "",
+          adressText: null,
+          addressChecked: null,
+          checked: false
+        },
+        {
+          children: false,
+          name: "AIPR",
+          value: "",
+          adressText: null,
+          addressChecked: null,
+          checked: false
+        },
+        {
+          children: false,
+          name: "shotCrete",
+          value: "",
+          adressText: null,
+          addressChecked: null,
+          checked: false
+        },
+        {
+          children: false,
+          name: "scaffoldingReception",
+          value: "",
+          adressText: null,
+          addressChecked: null,
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatA",
+          value: "",
+          adressText: "C28",
+          addressChecked: "B28",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatB1",
+          value: "",
+          adressText: "C29",
+          addressChecked: "B29",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatB2",
+          value: "",
+          adressText: "C30",
+          addressChecked: "B30",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatB3",
+          value: "",
+          adressText: null,
+          addressChecked: null,
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatC2",
+          value: "",
+          adressText: "C32",
+          addressChecked: "B32",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatC1",
+          value: "",
+          adressText: "C31",
+          addressChecked: "B31",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R3725",
+          value: "",
+          adressText: null,
+          addressChecked: null,
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatC3",
+          value: "",
+          adressText: "C33",
+          addressChecked: "B33",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatD",
+          value: "",
+          adressText: "C34",
+          addressChecked: "B34",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatE",
+          value: "",
+          adressText: "C35",
+          addressChecked: "B35",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatF",
+          value: "",
+          adressText: "C36",
+          addressChecked: "B36",
+          checked: false,
+        },
+        {
+          children: false,
+          name: "OptionWinch",
+          value: "",
+          adressText: "D37",
+          addressChecked: "C37",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R482CatG",
+          value: "",
+          adressText: "C38",
+          addressChecked: "B38",
+          checked: false
+        },
+        {
+          children: false,
+          name: "OptionTMS",
+          value: "",
+          adressText: null,
+          addressChecked: null,
+          checked: false
+        },
+        {
+          children: true,
+          name: "R486",
+          adressText: "C39:H39",
+          addressChecked: "B39",
+          nbRow: 3,
+          checked: false,
+          categories: [
+            {
+              name: "R486CatA1A",
+              value: "",
+              adressText: "F40",
+              addressChecked: "E40",
+              checked: false
+            },
+            {
+              name: "R486CatB1B",
+              value: "",
+              adressText: "F41",
+              addressChecked: "E41",
+              checked: false
+            },
+            {
+              name: "R486CatA3A",
+              value: "",
+              adressText: "H40",
+              addressChecked: "G40",
+              checked: false
+            },
+            {
+              name: "R486CatB3B",
+              value: "",
+              adressText: "H41",
+              addressChecked: "G41",
+              checked: false
+            }
+          ]
+        },
+        {
+          children: true,
+          name: "R483",
+          adressText: "C42:K44",
+          addressChecked: "",
+          nbRow: 3,
+          checked: false,
+          categories: [
+            {
+              name: "R483CatA1A",
+              value: "",
+              adressText: "I43",
+              addressChecked: "H43",
+              checked: false
+            },
+            {
+              name: "R483CatB1B",
+              value: "",
+              adressText: "I44",
+              addressChecked: "H44",
+              checked: false
+            },
+            {
+              name: "R483CatA2A",
+              value: "",
+              adressText: "K43",
+              addressChecked: "J43",
+              checked: false
+            },
+            {
+              name: "R483CatB2B",
+              value: "",
+              adressText: "K44",
+              addressChecked: "J44",
+              checked: false
+            }
+          ]
+        },
+        {
+          children: false,
+          name: "R484Cat1",
+          value: "",
+          adressText: "M35",
+          addressChecked: "L35",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R484Cat2",
+          value: "",
+          adressText: "M36",
+          addressChecked: "L36",
+          checked: false
+        },
+        {
+          children: true,
+          name: "R485",
+          adressText: "M37:N40",
+          addressChecked: "L37",
+          nbRow: 3,
+          checked: false,
+          categories: [
+            {
+              name: "R485Cat1",
+              value: "",
+              adressText: "N38",
+              addressChecked: "M38",
+              checked: false
+            },
+            {
+              name: "R485Cat2",
+              value: "",
+              adressText: "N39",
+              addressChecked: "M39",
+              checked: false
+            }
+          ]
+        },
+        {
+          children: true,
+          name: "R487",
+          adressText: "M40:N43",
+          addressChecked: "L40",
+          nbRow: 4,
+          checked: false,
+          categories: [
+            {
+              name: "R487Cat1",
+              value: "",
+              adressText: "N41",
+              addressChecked: "M41",
+              checked: false
+            },
+            {
+              name: "R487Cat2",
+              value: "",
+              adressText: "N42",
+              addressChecked: "M42",
+              checked: false
+            },
+            {
+              name: "R487Cat3",
+              value: "",
+              adressText: "N43",
+              addressChecked: "M43",
+              checked: false
+            }
+          ]
+        },
+        {
+          children: false,
+          name: "R489Cat1A",
+          value: "",
+          adressText: "M28",
+          addressChecked: "L28",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R489Cat1B",
+          value: "",
+          adressText: "M29",
+          addressChecked: "L29",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R489Cat3",
+          value: "",
+          adressText: "M30",
+          addressChecked: "L30",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R489Cat4",
+          value: "",
+          adressText: "M31",
+          addressChecked: "L31",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R489Cat5",
+          value: "",
+          adressText: "M32",
+          addressChecked: "L32",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R489Cat6",
+          value: "",
+          adressText: "M33",
+          addressChecked: "L33",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R489Cat7",
+          value: "",
+          adressText: "M34",
+          addressChecked: "L34",
+          checked: false
+        },
+        {
+          children: false,
+          name: "R490",
+          value: "",
+          adressText: "M44",
+          addressChecked: "L44",
+          checked: false
+        }
+      ],
       medicalExamination: null,
       medicalExaminationChecked: false,
       userDataInfos: {},
@@ -145,12 +502,26 @@ export default {
         this.userDataInfos.isPresent = this.userDataInfos.isPresent === "Présent";
 
       } else if (type === "dates") {
-        this.userDataDates = {};
-
+        // for init ibject, we create a loop on the array key
         for (let i = 0; i < this.keyDataDates.length; i++) {
-          this.userDataDates[this.keyDataDates[i]] = rangeValues[0][i];
+          // we search the key corresponding in this object
+          this.arrayCategoriesInfos.forEach(item => {
+            // if it has children
+            if(item.children) {
+              // we search the child for define the value
+              item.categories.forEach(elt => {
+                if(elt.name === this.keyDataDates[i]) {
+                  elt.value = rangeValues[0][i];
+                }
+              })
+            } // otherwise, we search in this item for define the value
+            else {
+              if(item.name === this.keyDataDates[i]) {
+                item.value = rangeValues[0][i];
+              }
+            }
+          })
         }
-
         this.transformDateExcel("dates");
       } else {
         console.log('error type in initObject');
@@ -159,14 +530,24 @@ export default {
     // we transform the date excel into moment date
     transformDateExcel(type) {
       if(type === "dates") {
-        Object.keys(this.userDataDates).forEach(item => {
-  
-          const userDataDatesValue = this.userDataDates[item];
-  
-          if(userDataDatesValue !== undefined && userDataDatesValue !== null && userDataDatesValue !== "") {
-            this.userDataDates[item] = moment.fromOADate(this.userDataDates[item]);
-          }
-        })
+        this.arrayCategoriesInfos.forEach(item => {
+            // if it has children
+            if(item.children) {
+              // we search the child for transform the value in moment
+              item.categories.forEach(elt => {
+                if(elt.value !== undefined && elt.value !== null && elt.value !== "") {
+                  elt.value = moment.fromOADate(elt.value);
+                }
+              })
+            } 
+            // otherwise, we search in this item for transform the value in moment
+            else {
+              if(item.value !== undefined && item.value !== null && item.value !== "") {
+                item.value = moment.fromOADate(item.value);
+              }
+            }
+          });
+
         this.isTheDateValid(type);
 
       } else if(type === "medical") {
@@ -182,19 +563,23 @@ export default {
     // we check if the examination dates are valid
     isTheDateValid(type) {
       if(type === "dates") {
-        this.userDataDatesChecked = {};
-  
-        Object.keys(this.userDataDates).forEach(item => {
-  
-          const userDataDatesValue = this.userDataDates[item];
-  
-          if(userDataDatesValue !== undefined && userDataDatesValue !== null && userDataDatesValue !== "") {
-
-            this.userDataDatesChecked[item] = this.diffDate(this.userDataDates[item]);
-          } else {
-            this.userDataDatesChecked[item] = false;
-          }
-        })
+        this.arrayCategoriesInfos.forEach(item => {
+            // if it has children
+            if(item.children) {
+              // we search the child for checked the expiration
+              item.categories.forEach(elt => {
+                if(elt.value !== undefined && elt.value !== null && elt.value !== "") {
+                  elt.checked = this.diffDate(elt.value);
+                }
+              })
+            } 
+            // otherwise, we search in this item for checked the expiration
+            else {
+              if(item.value !== undefined && item.value !== null && item.value !== "") {
+                item.checked = this.diffDate(item.value);
+              }
+            }
+          });
       } else if(type === "medical") {
         this.medicalExaminationChecked = this.diffDate(this.medicalExamination);
       }
@@ -213,26 +598,31 @@ export default {
     editDocument() {
       const minExamDate = this.calculateMinDate();
       this.writeUserDataInfos(minExamDate);
-      this.writeUserDataDatesSimple();
-      const categoryNames = [ "R486", "R483", "R487", "R485" ];
+      this.writeUserDataDates();
 
-      categoryNames.forEach(categoryName => {
-        this.prepareUserDataDatesComplex(categoryName);
-      })
-      console.log(this.userDataDatesChecked);
-      console.log(this.userDataDates);
+      console.log(this.userDataInfos);
+      console.log(this.arrayCategoriesInfos);
     },
     calculateMinDate() {
       const arrayValidDate = [];
-      Object.keys(this.userDataDates).forEach(item => {
-  
-        if(typeof this.userDataDates[item] === 'object') {
-          if(this.diffDate(this.userDataDates[item])) {
-            arrayValidDate.push(moment(this.userDataDates[item]))
+      this.arrayCategoriesInfos.forEach(item => {
+        // if it has children
+        if(item.children) {
+          // we search the checked children and push the date in array
+          item.categories.forEach(elt => {
+            if(elt.checked) {
+              arrayValidDate.push(elt.value);
+            }
+          })
+        } 
+        // otherwise, we search the checked items and push the date in array
+        else {
+          if(item.checked) {
+            arrayValidDate.push(item.value);
           }
         }
+      });
 
-      })
       return moment.min(arrayValidDate);
     },
     writeUserDataInfos(minExamDate) {
@@ -270,151 +660,66 @@ export default {
         return context.sync();
       });
     },
-    writeUserDataDatesSimple() {
-      window.Excel.run((context) => {
-        const ws = context.workbook.worksheets.getItem('TEMPLATE');
-        // write R482 Cat A
-        const rangeR482CatA = ws.getRange("B28");
-        rangeR482CatA.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatA)]];
-        // write R482 Cat B1
-        const rangeR482CatB1 = ws.getRange("B29");
-        rangeR482CatB1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatB1)]];
-        // write R482 Cat B2
-        const rangeR482CatB2 = ws.getRange("B31");
-        rangeR482CatB2.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatB2)]];
-        // write R482 Cat C1
-        const rangeR482CatC1 = ws.getRange("B32");
-        rangeR482CatC1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatC1)]];
-        // write R482 Cat C2
-        const rangeR482CatC2 = ws.getRange("B33");
-        rangeR482CatC2.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatC2)]];
-        // write R482 Cat C3
-        const rangeR482CatC3 = ws.getRange("B34");
-        rangeR482CatC3.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatC3)]];
-        // write R482 Cat D
-        const rangeR482CatD = ws.getRange("B35");
-        rangeR482CatD.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatD)]];
-        // write R482 Cat E
-        const rangeR482CatE = ws.getRange("B36");
-        rangeR482CatE.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatE)]];
-        // write R482 Cat F
-        const rangeR482CatF = ws.getRange("B37");
-        rangeR482CatF.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatF)]];
-        // write option winch (F)
-        const rangeOptionWinch = ws.getRange("C38");
-        rangeOptionWinch.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.OptionWinch)]];
-        // write R482 Cat G
-        const rangeR482CatG = ws.getRange("B39");
-        rangeR482CatG.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R482CatG)]];
-        // write R486 Cat A 1A
-        const rangeR486CatA1A = ws.getRange("E41");
-        rangeR486CatA1A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R486CatA1A)]];
-        // write R486 Cat A 3A
-        const rangeR486CatA3A = ws.getRange("G41");
-        rangeR486CatA3A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R486CatA3A)]];
-        // write R486 Cat B 1B
-        const rangeR486CatB1B = ws.getRange("E42");
-        rangeR486CatB1B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R486CatB1B)]];
-        // write R486 Cat B 3B
-        const rangeR486CatB3B = ws.getRange("G42");
-        rangeR486CatB3B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R486CatB3B)]];
-        // write R483 Cat A 1A
-        const rangeR483CatA1A = ws.getRange("H44");
-        rangeR483CatA1A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R483CatA1A)]];
-        // write R483 Cat A 1B
-        const rangeR483CatB1B = ws.getRange("J44");
-        rangeR483CatB1B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R483CatB1B)]];
-        // write R483 Cat A 2A
-        const rangeR483CatA2A = ws.getRange("H45");
-        rangeR483CatA2A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R483CatA2A)]];
-        // write R483 Cat A 2B
-        const rangeR483CatB2B = ws.getRange("J45");
-        rangeR483CatB2B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R483CatB2B)]];
-        // write R489 Cat 1A
-        const rangeR489Cat1A = ws.getRange("L28");
-        rangeR489Cat1A.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat1A)]];
-        // write R489 Cat 1B
-        const rangeR489Cat1B = ws.getRange("L29");
-        rangeR489Cat1B.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat1B)]];
-        // write R489 Cat 3
-        const rangeR489Cat3 = ws.getRange("L30");
-        rangeR489Cat3.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat3)]];
-        // write R489 Cat 4
-        const rangeR489Cat4 = ws.getRange("L31");
-        rangeR489Cat4.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat4)]];
-        // write R489 Cat 5
-        const rangeR489Cat5 = ws.getRange("L32");
-        rangeR489Cat5.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat5)]];
-        // write R489 Cat 6
-        const rangeR489Cat6 = ws.getRange("L33");
-        rangeR489Cat6.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat6)]];
-        // write R489 Cat 7
-        const rangeR489Cat7 = ws.getRange("L34");
-        rangeR489Cat7.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R489Cat7)]];
-        // write R484 Cat 1
-        const rangeR484Cat1 = ws.getRange("L35");
-        rangeR484Cat1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R484Cat1)]];
-        // write R485 Cat 1
-        const rangeR485Cat1 = ws.getRange("M38");
-        rangeR485Cat1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R485Cat1)]];
-        // write R485 Cat 2
-        const rangeR485Cat2 = ws.getRange("M39");
-        rangeR485Cat2.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R485Cat2)]];
-        // write R487 Cat 1
-        const rangeR487Cat1 = ws.getRange("M41");
-        rangeR487Cat1.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R487Cat)]];
-        // write R487 Cat 2
-        const rangeR487Cat2 = ws.getRange("M42");
-        rangeR487Cat2.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R487Cat2)]];
-        // write R487 Cat 3
-        const rangeR487Cat3 = ws.getRange("M43");
-        rangeR487Cat3.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R487Cat3)]];
-        // write R490
-        const rangeR490 = ws.getRange("L44");
-        rangeR490.values = [[this.transformBooleanInNumber(this.userDataDatesChecked.R490)]];
-        return context.sync();
+    writeUserDataDates() {
+      this.arrayCategoriesInfos.forEach((item) => {
+        // if it has children
+        if(item.children) {
+          // we search the adressChecked children and call function for write data
+          item.categories.forEach((elt) => {
+            if(elt.addressChecked !== null && (item.name === "R483" || item.name === "R485" || item.name === "R486" || item.name === "R487")) {
+              this.prepareUserDataDatesComplex(item);
+              this.writeUserDataDatesLoop(elt.addressChecked, elt.checked);
+            }
+          })
+        } 
+        // otherwise, we search the adressChecked items and call function for write data
+        else {
+          if(item.addressChecked !== null) {
+            this.writeUserDataDatesLoop(item.addressChecked, item.checked);
+          }
+        }
       });
     },
-    prepareUserDataDatesComplex(categoryName) {
+    prepareUserDataDatesComplex(item) {
 
-        if(categoryName === "R486") {
+        if(item.name === "R486") {
           // we define the arrays with different values for filter
           const categoryA = [ "R486CatA1A", "R486CatA3A" ];
           const categoryB = [ "R486CatB1B", "R486CatB3B" ];
           const category = categoryA.concat(categoryB);
           // we define if at least one is checked
-          const isCategoryChecked = category.some(item => this.userDataDatesChecked[item])
-          const isCategoryAChecked = categoryA.some(item => this.userDataDatesChecked[item])
-          const isCategoryBChecked = categoryB.some(item => this.userDataDatesChecked[item])
+          const isCategoryChecked = category.some(elt => item.categories[elt])
+          const isCategoryAChecked = categoryA.some(elt => item.categories[elt])
+          const isCategoryBChecked = categoryB.some(elt => item.categories[elt])
           // we call write function with address and value
-          this.writeUserDataDatesLoop("B40", isCategoryChecked)
-          this.writeUserDataDatesLoop("C41", isCategoryAChecked)
-          this.writeUserDataDatesLoop("C42", isCategoryBChecked)
-        } else if(categoryName === "R483") {
+          this.writeUserDataDatesLoop("B39", isCategoryChecked)
+          this.writeUserDataDatesLoop("C40", isCategoryAChecked)
+          this.writeUserDataDatesLoop("C41", isCategoryBChecked)
+        } else if(item.name === "R483") {
           // we define the arrays with different values for filter
           const categoryA = [ "R483CatA1A", "R483CatA2A" ];
           const categoryB = [ "R483CatB1B", "R483CatB2B" ];
           const category = categoryA.concat(categoryB);
           // we define if at least one is checked
-          const isCategoryChecked = category.some(item => this.userDataDatesChecked[item])
-          const isCategoryAChecked = categoryA.some(item => this.userDataDatesChecked[item])
-          const isCategoryBChecked = categoryB.some(item => this.userDataDatesChecked[item])
+          const isCategoryChecked = category.some(elt => item.categories[elt])
+          const isCategoryAChecked = categoryA.some(elt => item.categories[elt])
+          const isCategoryBChecked = categoryB.some(elt => item.categories[elt])
           // we call write function with address and value
-          this.writeUserDataDatesLoop("B43", isCategoryChecked)
-          this.writeUserDataDatesLoop("C44", isCategoryAChecked)
-          this.writeUserDataDatesLoop("C45", isCategoryBChecked)
-        } else if(categoryName === "R485") {
+          this.writeUserDataDatesLoop("B42", isCategoryChecked)
+          this.writeUserDataDatesLoop("C43", isCategoryAChecked)
+          this.writeUserDataDatesLoop("C44", isCategoryBChecked)
+        } else if(item.name === "R485") {
           // we define the arrays with different values for filter
           const category = [ "R485Cat1", "R485Cat2" ];
           // we define if at least one is checked
-          const isCategoryChecked = category.some(item => this.userDataDatesChecked[item])
+          const isCategoryChecked = category.some(elt => item.categories[elt])
           // we call write function with address and value
           this.writeUserDataDatesLoop("L37", isCategoryChecked)
-        } else if(categoryName === "R487") {
+        } else if(item.name === "R487") {
           // we define the arrays with different values for filter
           const category = [ "R487Cat1", "R487Cat2", "R487Cat3" ];
           // we define if at least one is checked
-          const isCategoryChecked = category.some(item => this.userDataDatesChecked[item])
+          const isCategoryChecked = category.some(elt => item.categories[elt])
           // we call write function with address and value
           this.writeUserDataDatesLoop("L40", isCategoryChecked)
         } else {
@@ -427,8 +732,8 @@ export default {
         const ws = context.workbook.worksheets.getItem('TEMPLATE');
         
         // write
-        const rangeOptionWinch = ws.getRange(address);
-        rangeOptionWinch.values = [[this.transformBooleanInNumber(value)]];
+        const range = ws.getRange(address);
+        range.values = [[this.transformBooleanInNumber(value)]];
 
         return context.sync();
       })
