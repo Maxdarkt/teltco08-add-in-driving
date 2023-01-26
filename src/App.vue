@@ -44,6 +44,9 @@
           <button v-if="userDataInfos.isPresent" class="bg-blue-600 text-gray-200 py-2 px-3 rounded-md transition duration-500 hover:bg-blue-800 hover:text-gray-50 mt-4" @click="editDocument">
             Générer le document
           </button>
+          <button v-if="generateCard" class="bg-blue-600 text-gray-200 py-2 px-3 rounded-md transition duration-500 hover:bg-blue-800 hover:text-gray-50 mt-4" @click="generateUserCertificate">
+            Générer la carte
+          </button>
         </div>
         <!-- error message -->
         <div v-else>
@@ -74,6 +77,7 @@ export default {
       limitDate: 7,
       rowInput: 3,
       dateAuthorization: Date.now(),
+      generateCard: false,
       keyDataInfos : ["isPresent", "team", "lastName", "firstName", "position", "company" ],
       keyDataDates: [ "workAtHeight", "AIPR", "shotCrete", "scaffoldingReception", "R482CatA", "R482CatB1", "R482CatB2", "R482CatB3", "R482CatC2", "R482CatC1", "R3725", "R482CatC3", "R482CatD", "R482CatE", "R482CatF", "R482CatG", "OptionTMS", "OptionWinch", "R486CatA1A", "R486CatB1B", "R486CatA3A", "R486CatB3B", "R483CatB1B", "R483CatA1A", "R483CatA2A", "R483CatB2B", "R484Cat1", "R484Cat2", "R487Cat1", "R487Cat2", "R487Cat3", "R489Cat1A", "R489Cat1B", "R489Cat2A", "R489Cat2B", "R489Cat3", "R489Cat4", "R489Cat5", "R489Cat6", "R489Cat7", "R485Cat1", "R485Cat2", "R490" ],
       arrayCategoriesInfos: [
@@ -436,8 +440,7 @@ export default {
       medicalExamination: null,
       medicalExaminationChecked: false,
       userDataInfos: {},
-      userDataDates: {},
-      userDataDatesChecked: {}
+      count: 0
     }
   },
   computed: {
@@ -449,8 +452,34 @@ export default {
     }
   },
   methods: {
+    // reset the state
+    resetState() {
+      if(this.count > 0) {
+        this.generateCard = false;
+        this.userDataInfos = {};
+        this.medicalExamination = null;
+        this.medicalExaminationChecked = false;
+        this.dateAuthorization = Date.now();
+        this.arrayCategoriesInfos.forEach(item => {
+          // if it has children
+          if(item.children) {
+            // we search the child for define the value
+            item.categories.forEach(elt => {
+              elt.value = "";
+              elt.checked = false;
+            })
+          } // otherwise, we search in this item for define the value
+          else {
+            item.value = "";
+            item.checked = false;
+          }
+        })
+      }
+    },
     // we get the user data into cells
     async readData() {
+      this.resetState();
+      this.count++;
       // if the value is less than 3, we stop processing
       if(this.rowInput.value < 3) {
         return;
@@ -467,6 +496,7 @@ export default {
         await this.getData("medical", addressMedicalExamination);
         await this.getData("dates", addressDataDates);
       } else {
+        console.log('readData error');
         return;
       }
     },
@@ -489,7 +519,7 @@ export default {
         });
       })
     },
-    // we init object : userDataInfos && userDataDates
+    // we init object : userDataInfos && arrayCategoriesInfos
     initObject(type, rangeValues) {
 
       if(type === "infos") {
@@ -599,7 +629,9 @@ export default {
       const minExamDate = this.calculateMinDate();
       this.writeUserDataInfos(minExamDate);
       this.writeUserDataDates();
-
+      setTimeout(() => {
+        this.generateCard = true;
+      }, 500);
       console.log(this.userDataInfos);
       console.log(this.arrayCategoriesInfos);
     },
@@ -661,26 +693,26 @@ export default {
       });
     },
     writeUserDataDates() {
-      this.arrayCategoriesInfos.forEach((item) => {
+      this.arrayCategoriesInfos.forEach(async (item) => {
         // if it has children
         if(item.children) {
           // we search the adressChecked children and call function for write data
-          item.categories.forEach((elt) => {
+          item.categories.forEach(async (elt) => {
             if(elt.addressChecked !== null && (item.name === "R483" || item.name === "R485" || item.name === "R486" || item.name === "R487")) {
               this.prepareUserDataDatesComplex(item);
-              this.writeUserDataDatesLoop(elt.addressChecked, elt.checked);
+              await this.writeUserDataDatesLoop(elt.addressChecked, elt.checked);
             }
           })
         } 
         // otherwise, we search the adressChecked items and call function for write data
         else {
           if(item.addressChecked !== null) {
-            this.writeUserDataDatesLoop(item.addressChecked, item.checked);
+            await this.writeUserDataDatesLoop(item.addressChecked, item.checked);
           }
         }
       });
     },
-    prepareUserDataDatesComplex(item) {
+    async prepareUserDataDatesComplex(item) {
 
         if(item.name === "R486") {
           // we define the arrays with different values for filter
@@ -692,9 +724,9 @@ export default {
           const isCategoryAChecked = categoryA.some(elt => item.categories[elt])
           const isCategoryBChecked = categoryB.some(elt => item.categories[elt])
           // we call write function with address and value
-          this.writeUserDataDatesLoop("B39", isCategoryChecked)
-          this.writeUserDataDatesLoop("C40", isCategoryAChecked)
-          this.writeUserDataDatesLoop("C41", isCategoryBChecked)
+          await this.writeUserDataDatesLoop("B39", isCategoryChecked)
+          await this.writeUserDataDatesLoop("C40", isCategoryAChecked)
+          await this.writeUserDataDatesLoop("C41", isCategoryBChecked)
         } else if(item.name === "R483") {
           // we define the arrays with different values for filter
           const categoryA = [ "R483CatA1A", "R483CatA2A" ];
@@ -705,41 +737,131 @@ export default {
           const isCategoryAChecked = categoryA.some(elt => item.categories[elt])
           const isCategoryBChecked = categoryB.some(elt => item.categories[elt])
           // we call write function with address and value
-          this.writeUserDataDatesLoop("B42", isCategoryChecked)
-          this.writeUserDataDatesLoop("C43", isCategoryAChecked)
-          this.writeUserDataDatesLoop("C44", isCategoryBChecked)
+          await this.writeUserDataDatesLoop("B42", isCategoryChecked)
+          await this.writeUserDataDatesLoop("C43", isCategoryAChecked)
+          await this.writeUserDataDatesLoop("C44", isCategoryBChecked)
         } else if(item.name === "R485") {
           // we define the arrays with different values for filter
           const category = [ "R485Cat1", "R485Cat2" ];
           // we define if at least one is checked
           const isCategoryChecked = category.some(elt => item.categories[elt])
           // we call write function with address and value
-          this.writeUserDataDatesLoop("L37", isCategoryChecked)
+          await this.writeUserDataDatesLoop("L37", isCategoryChecked)
         } else if(item.name === "R487") {
           // we define the arrays with different values for filter
           const category = [ "R487Cat1", "R487Cat2", "R487Cat3" ];
           // we define if at least one is checked
           const isCategoryChecked = category.some(elt => item.categories[elt])
           // we call write function with address and value
-          this.writeUserDataDatesLoop("L40", isCategoryChecked)
+          await this.writeUserDataDatesLoop("L40", isCategoryChecked)
         } else {
           console.log('error type category in prepareUserDataDatesComplex')
         }
 
     },
-    writeUserDataDatesLoop(address, value) {
-      window.Excel.run((context) => {
+    async writeUserDataDatesLoop(address, value) {
+
+      await window.Excel.run(async (context) => {
         const ws = context.workbook.worksheets.getItem('TEMPLATE');
-        
         // write
         const range = ws.getRange(address);
         range.values = [[this.transformBooleanInNumber(value)]];
 
-        return context.sync();
+        await context.sync();
       })
     },
     transformBooleanInNumber(value) {
       return value === true ? 1 : 0;
+    },
+    async generateUserCertificate() {
+
+      await this.cleanCells("L50:U65");
+      this.writeCheckedValue();
+      this.writeCheckedItem();
+    },
+    writeCheckedValue() {
+      let i = 50;
+      let cellChecked = `L${i}`;
+      this.arrayCategoriesInfos.forEach(async (item) => {
+        // if it has children
+        if(item.children) {
+          // we search only checked children and call function for write data
+          item.categories.forEach(async (elt) => {
+            if(elt.checked && (item.name === "R483" || item.name === "R485" || item.name === "R486" || item.name === "R487")) {
+              // code ...
+            }
+          })
+        } 
+        // otherwise, we search only checked items and call function for write data
+        else {
+          if(item.checked && item.adressText) {
+            cellChecked = `L${i++}`;
+            await this.writeUserDataDatesLoop(cellChecked, item.checked);
+          }
+        }
+      });
+    },
+    writeCheckedItem() {
+      let i = 50;
+      let adressFinal = `M${i}`;
+      this.arrayCategoriesInfos.forEach(async (item) => {
+        // if it has children
+        if(item.children) {
+          // we search only checked children and call function for write data
+          item.categories.forEach(async (elt) => {
+            if(elt.checked && (item.name === "R483" || item.name === "R485" || item.name === "R486" || item.name === "R487")) {
+              // code ...
+            }
+          })
+        } 
+        // otherwise, we search only checked items and call function for write data
+        else {
+          if(item.checked && item.adressText) {
+            adressFinal = `M${i++}`;
+            await this.copyCert(item.adressText, adressFinal, true);
+          }
+        }
+      });
+    },
+    async copyCert(adressOriginal, adressFinal ) {
+      await window.Excel.run(async (context) => {
+        const ws = context.workbook.worksheets.getItem('TEMPLATE');
+        // read 
+        const rangeOriginal = ws.getRange(adressOriginal);
+        rangeOriginal.load("values");
+        await context.sync();
+        // write
+        const rangeFinal = ws.getRange(adressFinal);
+        rangeFinal.values = rangeOriginal.values;
+
+        await context.sync();
+      })
+    },
+    async cleanCells(adress) {
+      await window.Excel.run(async (context) => {
+        const ws = context.workbook.worksheets.getItem('TEMPLATE');
+
+        // read
+        const range = ws.getRange(adress);
+        range.load("values");
+        await context.sync();
+
+        // create a array of empty cells (1 row)
+        const rowValues = [];
+        for(let i = 0; i < range.values[0].length; i++) {
+          rowValues.push("");
+        }
+
+        // create a array of empty rows
+        const arrayValues = [];
+        for(let i = 0; i < range.values.length; i++) {
+          arrayValues.push(rowValues);
+        }
+        // write
+        range.values = arrayValues;
+
+        await context.sync();
+      })
     }
   }
 };
