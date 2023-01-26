@@ -86,7 +86,7 @@ export default {
           name: "workAtHeight",
           value: "",
           adressText: null,
-          addressChecked: null,
+          adressChecked: null,
           checked: false
         },
         {
@@ -94,7 +94,7 @@ export default {
           name: "AIPR",
           value: "",
           adressText: null,
-          addressChecked: null,
+          adressChecked: null,
           checked: false
         },
         {
@@ -102,7 +102,7 @@ export default {
           name: "shotCrete",
           value: "",
           adressText: null,
-          addressChecked: null,
+          adressChecked: null,
           checked: false
         },
         {
@@ -110,7 +110,7 @@ export default {
           name: "scaffoldingReception",
           value: "",
           adressText: null,
-          addressChecked: null,
+          adressChecked: null,
           checked: false
         },
         {
@@ -118,7 +118,7 @@ export default {
           name: "R482CatA",
           value: "",
           adressText: "C28",
-          addressChecked: "B28",
+          adressChecked: "B28",
           checked: false
         },
         {
@@ -126,7 +126,7 @@ export default {
           name: "R482CatB1",
           value: "",
           adressText: "C29",
-          addressChecked: "B29",
+          adressChecked: "B29",
           checked: false
         },
         {
@@ -134,7 +134,7 @@ export default {
           name: "R482CatB2",
           value: "",
           adressText: "C30",
-          addressChecked: "B30",
+          adressChecked: "B30",
           checked: false
         },
         {
@@ -142,7 +142,7 @@ export default {
           name: "R482CatB3",
           value: "",
           adressText: null,
-          addressChecked: null,
+          adressChecked: null,
           checked: false
         },
         {
@@ -150,7 +150,7 @@ export default {
           name: "R482CatC2",
           value: "",
           adressText: "C32",
-          addressChecked: "B32",
+          adressChecked: "B32",
           checked: false
         },
         {
@@ -158,7 +158,7 @@ export default {
           name: "R482CatC1",
           value: "",
           adressText: "C31",
-          addressChecked: "B31",
+          adressChecked: "B31",
           checked: false
         },
         {
@@ -166,7 +166,7 @@ export default {
           name: "R3725",
           value: "",
           adressText: null,
-          addressChecked: null,
+          adressChecked: null,
           checked: false
         },
         {
@@ -174,7 +174,7 @@ export default {
           name: "R482CatC3",
           value: "",
           adressText: "C33",
-          addressChecked: "B33",
+          adressChecked: "B33",
           checked: false
         },
         {
@@ -182,7 +182,7 @@ export default {
           name: "R482CatD",
           value: "",
           adressText: "C34",
-          addressChecked: "B34",
+          adressChecked: "B34",
           checked: false
         },
         {
@@ -190,7 +190,7 @@ export default {
           name: "R482CatE",
           value: "",
           adressText: "C35",
-          addressChecked: "B35",
+          adressChecked: "B35",
           checked: false
         },
         {
@@ -198,7 +198,7 @@ export default {
           name: "R482CatF",
           value: "",
           adressText: "C36",
-          addressChecked: "B36",
+          adressChecked: "B36",
           checked: false,
         },
         {
@@ -206,7 +206,7 @@ export default {
           name: "OptionWinch",
           value: "",
           adressText: "D37",
-          addressChecked: "C37",
+          adressChecked: "C37",
           checked: false
         },
         {
@@ -214,7 +214,7 @@ export default {
           name: "R482CatG",
           value: "",
           adressText: "C38",
-          addressChecked: "B38",
+          adressChecked: "B38",
           checked: false
         },
         {
@@ -222,14 +222,14 @@ export default {
           name: "OptionTMS",
           value: "",
           adressText: null,
-          addressChecked: null,
+          adressChecked: null,
           checked: false
         },
         {
           children: true,
           name: "R486",
-          adressText: "C39:H39",
-          addressChecked: "B39",
+          adressEndText: "H39",
+          adressChecked: "B39",
           nbRow: 3,
           checked: false,
           categories: [
@@ -237,28 +237,28 @@ export default {
               name: "R486CatA1A",
               value: "",
               adressText: "F40",
-              addressChecked: "E40",
+              adressChecked: "E40",
               checked: false
             },
             {
               name: "R486CatB1B",
               value: "",
               adressText: "F41",
-              addressChecked: "E41",
+              adressChecked: "E41",
               checked: false
             },
             {
               name: "R486CatA3A",
               value: "",
               adressText: "H40",
-              addressChecked: "G40",
+              adressChecked: "G40",
               checked: false
             },
             {
               name: "R486CatB3B",
               value: "",
               adressText: "H41",
-              addressChecked: "G41",
+              adressChecked: "G41",
               checked: false
             }
           ]
@@ -266,8 +266,8 @@ export default {
         {
           children: true,
           name: "R483",
-          adressText: "C42:K44",
-          addressChecked: "",
+          adressEndText: "K44",
+          adressChecked: "B42",
           nbRow: 3,
           checked: false,
           categories: [
@@ -275,28 +275,28 @@ export default {
               name: "R483CatA1A",
               value: "",
               adressText: "I43",
-              addressChecked: "H43",
+              adressChecked: "H43",
               checked: false
             },
             {
               name: "R483CatB1B",
               value: "",
               adressText: "I44",
-              addressChecked: "H44",
+              adressChecked: "H44",
               checked: false
             },
             {
               name: "R483CatA2A",
               value: "",
               adressText: "K43",
-              addressChecked: "J43",
+              adressChecked: "J43",
               checked: false
             },
             {
               name: "R483CatB2B",
               value: "",
               adressText: "K44",
-              addressChecked: "J44",
+              adressChecked: "J44",
               checked: false
             }
           ]
@@ -306,7 +306,7 @@ export default {
           name: "R484Cat1",
           value: "",
           adressText: "M35",
-          addressChecked: "L35",
+          adressChecked: "L35",
           checked: false
         },
         {
@@ -314,14 +314,14 @@ export default {
           name: "R484Cat2",
           value: "",
           adressText: "M36",
-          addressChecked: "L36",
+          adressChecked: "L36",
           checked: false
         },
         {
           children: true,
           name: "R485",
-          adressText: "M37:N40",
-          addressChecked: "L37",
+          adressEndText: "N40",
+          adressChecked: "L37",
           nbRow: 3,
           checked: false,
           categories: [
@@ -329,14 +329,14 @@ export default {
               name: "R485Cat1",
               value: "",
               adressText: "N38",
-              addressChecked: "M38",
+              adressChecked: "M38",
               checked: false
             },
             {
               name: "R485Cat2",
               value: "",
               adressText: "N39",
-              addressChecked: "M39",
+              adressChecked: "M39",
               checked: false
             }
           ]
@@ -344,8 +344,8 @@ export default {
         {
           children: true,
           name: "R487",
-          adressText: "M40:N43",
-          addressChecked: "L40",
+          adressEndText: "N43",
+          adressChecked: "L40",
           nbRow: 4,
           checked: false,
           categories: [
@@ -353,21 +353,21 @@ export default {
               name: "R487Cat1",
               value: "",
               adressText: "N41",
-              addressChecked: "M41",
+              adressChecked: "M41",
               checked: false
             },
             {
               name: "R487Cat2",
               value: "",
               adressText: "N42",
-              addressChecked: "M42",
+              adressChecked: "M42",
               checked: false
             },
             {
               name: "R487Cat3",
               value: "",
               adressText: "N43",
-              addressChecked: "M43",
+              adressChecked: "M43",
               checked: false
             }
           ]
@@ -377,7 +377,7 @@ export default {
           name: "R489Cat1A",
           value: "",
           adressText: "M28",
-          addressChecked: "L28",
+          adressChecked: "L28",
           checked: false
         },
         {
@@ -385,7 +385,7 @@ export default {
           name: "R489Cat1B",
           value: "",
           adressText: "M29",
-          addressChecked: "L29",
+          adressChecked: "L29",
           checked: false
         },
         {
@@ -393,7 +393,7 @@ export default {
           name: "R489Cat3",
           value: "",
           adressText: "M30",
-          addressChecked: "L30",
+          adressChecked: "L30",
           checked: false
         },
         {
@@ -401,7 +401,7 @@ export default {
           name: "R489Cat4",
           value: "",
           adressText: "M31",
-          addressChecked: "L31",
+          adressChecked: "L31",
           checked: false
         },
         {
@@ -409,7 +409,7 @@ export default {
           name: "R489Cat5",
           value: "",
           adressText: "M32",
-          addressChecked: "L32",
+          adressChecked: "L32",
           checked: false
         },
         {
@@ -417,7 +417,7 @@ export default {
           name: "R489Cat6",
           value: "",
           adressText: "M33",
-          addressChecked: "L33",
+          adressChecked: "L33",
           checked: false
         },
         {
@@ -425,7 +425,7 @@ export default {
           name: "R489Cat7",
           value: "",
           adressText: "M34",
-          addressChecked: "L34",
+          adressChecked: "L34",
           checked: false
         },
         {
@@ -433,7 +433,7 @@ export default {
           name: "R490",
           value: "",
           adressText: "M44",
-          addressChecked: "L44",
+          adressChecked: "L44",
           checked: false
         }
       ],
@@ -484,28 +484,28 @@ export default {
       if(this.rowInput.value < 3) {
         return;
       }
-      // we define the different addressRange
-      const addressMedicalExamination = `G${this.rowInput}:G${this.rowInput}`;
-      const addressDataInfos = `A${this.rowInput}:F${this.rowInput}`;
-      const addressDataDates = `I${this.rowInput}:AZ${this.rowInput}`;
+      // we define the different adressRange
+      const adressMedicalExamination = `G${this.rowInput}:G${this.rowInput}`;
+      const adressDataInfos = `A${this.rowInput}:F${this.rowInput}`;
+      const adressDataDates = `I${this.rowInput}:AZ${this.rowInput}`;
 
       // we call functions
-      await this.getData("infos", addressDataInfos)
+      await this.getData("infos", adressDataInfos)
       // we check if the user is present on the site, otherwise we stop proccessing
       if(this.userDataInfos.isPresent) {
-        await this.getData("medical", addressMedicalExamination);
-        await this.getData("dates", addressDataDates);
+        await this.getData("medical", adressMedicalExamination);
+        await this.getData("dates", adressDataDates);
       } else {
         console.log('readData error');
         return;
       }
     },
     // we get data from excel cells
-    async getData(type, addressDataInfos) {
+    async getData(type, adressDataInfos) {
       return new Promise((resolve) => {
         window.Excel.run(async (context) => {
           const ws = context.workbook.worksheets.getItem("CACES");
-          const range = ws.getRange(addressDataInfos);
+          const range = ws.getRange(adressDataInfos);
           range.load("values");
           await context.sync();
 
@@ -698,16 +698,16 @@ export default {
         if(item.children) {
           // we search the adressChecked children and call function for write data
           item.categories.forEach(async (elt) => {
-            if(elt.addressChecked !== null && (item.name === "R483" || item.name === "R485" || item.name === "R486" || item.name === "R487")) {
+            if(elt.adressChecked !== null && (item.name === "R483" || item.name === "R485" || item.name === "R486" || item.name === "R487")) {
               this.prepareUserDataDatesComplex(item);
-              await this.writeUserDataDatesLoop(elt.addressChecked, elt.checked);
+              await this.writeUserDataDatesLoop(elt.adressChecked, elt.checked);
             }
           })
         } 
         // otherwise, we search the adressChecked items and call function for write data
         else {
-          if(item.addressChecked !== null) {
-            await this.writeUserDataDatesLoop(item.addressChecked, item.checked);
+          if(item.adressChecked !== null && (item.name !== "R483" || item.name !== "R485" || item.name !== "R486" || item.name !== "R487")) {
+            await this.writeUserDataDatesLoop(item.adressChecked, item.checked);
           }
         }
       });
@@ -720,10 +720,13 @@ export default {
           const categoryB = [ "R486CatB1B", "R486CatB3B" ];
           const category = categoryA.concat(categoryB);
           // we define if at least one is checked
-          const isCategoryChecked = category.some(elt => item.categories[elt])
-          const isCategoryAChecked = categoryA.some(elt => item.categories[elt])
-          const isCategoryBChecked = categoryB.some(elt => item.categories[elt])
-          // we call write function with address and value
+          const isCategoryChecked = this.isSomeValue(category, item);
+          const isCategoryAChecked = this.isSomeValue(categoryA, item);
+          const isCategoryBChecked = this.isSomeValue(categoryB, item);
+          console.log(this.isSomeValue(category, item));
+          console.log(this.isSomeValue(categoryA, item));
+          console.log(this.isSomeValue(categoryB, item));
+          // we call write function with adress and value
           await this.writeUserDataDatesLoop("B39", isCategoryChecked)
           await this.writeUserDataDatesLoop("C40", isCategoryAChecked)
           await this.writeUserDataDatesLoop("C41", isCategoryBChecked)
@@ -733,10 +736,10 @@ export default {
           const categoryB = [ "R483CatB1B", "R483CatB2B" ];
           const category = categoryA.concat(categoryB);
           // we define if at least one is checked
-          const isCategoryChecked = category.some(elt => item.categories[elt])
-          const isCategoryAChecked = categoryA.some(elt => item.categories[elt])
-          const isCategoryBChecked = categoryB.some(elt => item.categories[elt])
-          // we call write function with address and value
+          const isCategoryChecked = this.isSomeValue(category, item);
+          const isCategoryAChecked = this.isSomeValue(categoryA, item);
+          const isCategoryBChecked = this.isSomeValue(categoryB, item);
+          // we call write function with adress and value
           await this.writeUserDataDatesLoop("B42", isCategoryChecked)
           await this.writeUserDataDatesLoop("C43", isCategoryAChecked)
           await this.writeUserDataDatesLoop("C44", isCategoryBChecked)
@@ -744,27 +747,36 @@ export default {
           // we define the arrays with different values for filter
           const category = [ "R485Cat1", "R485Cat2" ];
           // we define if at least one is checked
-          const isCategoryChecked = category.some(elt => item.categories[elt])
-          // we call write function with address and value
+          const isCategoryChecked = this.isSomeValue(category, item);
+          // we call write function with adress and value
           await this.writeUserDataDatesLoop("L37", isCategoryChecked)
         } else if(item.name === "R487") {
           // we define the arrays with different values for filter
           const category = [ "R487Cat1", "R487Cat2", "R487Cat3" ];
           // we define if at least one is checked
-          const isCategoryChecked = category.some(elt => item.categories[elt])
-          // we call write function with address and value
+          const isCategoryChecked = this.isSomeValue(category, item);
+          // we call write function with adress and value
           await this.writeUserDataDatesLoop("L40", isCategoryChecked)
         } else {
           console.log('error type category in prepareUserDataDatesComplex')
         }
-
     },
-    async writeUserDataDatesLoop(address, value) {
+    isSomeValue(array, item) {
+      return array.some(elt => {
+        return item.categories.some(cat => {
+          if(cat.name === elt) {
+            console.log(cat.checked)
+            return cat.checked;
+          }
+        })
+      })
+    },
+    async writeUserDataDatesLoop(adress, value) {
 
       await window.Excel.run(async (context) => {
         const ws = context.workbook.worksheets.getItem('TEMPLATE');
         // write
-        const range = ws.getRange(address);
+        const range = ws.getRange(adress);
         range.values = [[this.transformBooleanInNumber(value)]];
 
         await context.sync();
