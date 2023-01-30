@@ -228,7 +228,7 @@ export default {
         {
           children: true,
           name: "R486",
-          adressEndText: "H39",
+          adressEndText: "H41",
           adressChecked: "B39",
           nbRow: 3,
           checked: false,
@@ -320,7 +320,7 @@ export default {
         {
           children: true,
           name: "R485",
-          adressEndText: "N40",
+          adressEndText: "N39",
           adressChecked: "L37",
           nbRow: 3,
           checked: false,
@@ -440,7 +440,8 @@ export default {
       medicalExamination: null,
       medicalExaminationChecked: false,
       userDataInfos: {},
-      count: 0
+      count: 0,
+      counterRow: 0
     }
   },
   computed: {
@@ -460,6 +461,7 @@ export default {
         this.medicalExamination = null;
         this.medicalExaminationChecked = false;
         this.dateAuthorization = Date.now();
+        this.counterRow = 0;
         this.arrayCategoriesInfos.forEach(item => {
           // if it has children
           if(item.children) {
@@ -479,6 +481,7 @@ export default {
     // we get the user data into cells
     async readData() {
       this.resetState();
+      this.cleanCells();
       this.count++;
       // if the value is less than 3, we stop processing
       if(this.rowInput.value < 3) {
@@ -723,9 +726,12 @@ export default {
           const isCategoryChecked = this.isSomeValue(category, item);
           const isCategoryAChecked = this.isSomeValue(categoryA, item);
           const isCategoryBChecked = this.isSomeValue(categoryB, item);
-          console.log(this.isSomeValue(category, item));
-          console.log(this.isSomeValue(categoryA, item));
-          console.log(this.isSomeValue(categoryB, item));
+          // we modify the value in principal array
+          this.arrayCategoriesInfos.forEach(elt => {
+            if(elt.name === "R486") {
+              elt.checked = isCategoryChecked;
+            }
+          })
           // we call write function with adress and value
           await this.writeUserDataDatesLoop("B39", isCategoryChecked)
           await this.writeUserDataDatesLoop("C40", isCategoryAChecked)
@@ -739,6 +745,12 @@ export default {
           const isCategoryChecked = this.isSomeValue(category, item);
           const isCategoryAChecked = this.isSomeValue(categoryA, item);
           const isCategoryBChecked = this.isSomeValue(categoryB, item);
+          // we modify the value in principal array
+          this.arrayCategoriesInfos.forEach(elt => {
+            if(elt.name === "R483") {
+              elt.checked = isCategoryChecked;
+            }
+          })
           // we call write function with adress and value
           await this.writeUserDataDatesLoop("B42", isCategoryChecked)
           await this.writeUserDataDatesLoop("C43", isCategoryAChecked)
@@ -748,13 +760,26 @@ export default {
           const category = [ "R485Cat1", "R485Cat2" ];
           // we define if at least one is checked
           const isCategoryChecked = this.isSomeValue(category, item);
+          // we modify the value in principal array
+          this.arrayCategoriesInfos.forEach(elt => {
+            if(elt.name === "R485") {
+              elt.checked = isCategoryChecked;
+            }
+          })
           // we call write function with adress and value
           await this.writeUserDataDatesLoop("L37", isCategoryChecked)
         } else if(item.name === "R487") {
           // we define the arrays with different values for filter
           const category = [ "R487Cat1", "R487Cat2", "R487Cat3" ];
+          
           // we define if at least one is checked
           const isCategoryChecked = this.isSomeValue(category, item);
+          // we modify the value in principal array
+          this.arrayCategoriesInfos.forEach(elt => {
+            if(elt.name === "R487") {
+              elt.checked = isCategoryChecked;
+            }
+          })
           // we call write function with adress and value
           await this.writeUserDataDatesLoop("L40", isCategoryChecked)
         } else {
@@ -765,7 +790,6 @@ export default {
       return array.some(elt => {
         return item.categories.some(cat => {
           if(cat.name === elt) {
-            console.log(cat.checked)
             return cat.checked;
           }
         })
@@ -787,8 +811,8 @@ export default {
     },
     async generateUserCertificate() {
 
-      await this.cleanCells("L50:U65");
-      this.writeCheckedValue();
+      await this.cleanCells();
+      // this.writeCheckedValue();
       this.writeCheckedItem();
     },
     writeCheckedValue() {
@@ -815,41 +839,50 @@ export default {
     },
     writeCheckedItem() {
       let i = 50;
-      let adressFinal = `M${i}`;
+      let columnCell = "L";
       this.arrayCategoriesInfos.forEach(async (item) => {
         // if it has children
-        if(item.children) {
+        if(item.children && item.adressEndText && item.adressChecked && item.checked && (item.name === "R483" || item.name === "R485" || item.name === "R486" || item.name === "R487")) {
           // we search only checked children and call function for write data
-          item.categories.forEach(async (elt) => {
-            if(elt.checked && (item.name === "R483" || item.name === "R485" || item.name === "R486" || item.name === "R487")) {
-              // code ...
-            }
-          })
+          const adressOriginal = `${item.adressChecked}:${item.adressEndText}`;
+          i += item.nbRow;
+          await this.copyCert(adressOriginal, columnCell, i, item.nbRow);
         } 
         // otherwise, we search only checked items and call function for write data
         else {
           if(item.checked && item.adressText) {
-            adressFinal = `M${i++}`;
-            await this.copyCert(item.adressText, adressFinal, true);
+            i++;
+            const adressOriginal = `${item.adressChecked}:${item.adressText}`;
+            await this.copyCert(adressOriginal, columnCell, i, 1);
           }
         }
       });
     },
-    async copyCert(adressOriginal, adressFinal ) {
+    async copyCert(adressOriginal, columnCell, i, nbRows ) {
+      // console.log(adressOriginal, adressFinal);
       await window.Excel.run(async (context) => {
         const ws = context.workbook.worksheets.getItem('TEMPLATE');
         // read 
         const rangeOriginal = ws.getRange(adressOriginal);
         rangeOriginal.load("values");
         await context.sync();
+        
+        const numberCells = rangeOriginal.values[0].length - 1;
+
+        const adressStartFinal = columnCell + (i - nbRows);
+        const adressEndFinal = this.getNextChar(columnCell, numberCells) + (i - 1);
+
+        console.log('copyCert info :', adressOriginal, columnCell, i, nbRows)
+        console.log('copyCert paste :', adressStartFinal, adressEndFinal)
+
         // write
-        const rangeFinal = ws.getRange(adressFinal);
+        const rangeFinal = ws.getRange(`${adressStartFinal}:${adressEndFinal}`);
         rangeFinal.values = rangeOriginal.values;
 
         await context.sync();
       })
     },
-    async cleanCells(adress) {
+    async cleanCells(adress = "L50:U65") {
       await window.Excel.run(async (context) => {
         const ws = context.workbook.worksheets.getItem('TEMPLATE');
 
@@ -874,6 +907,9 @@ export default {
 
         await context.sync();
       })
+    },
+    getNextChar(char, add) {
+      return String.fromCharCode(char.charCodeAt(0) + add);
     }
   }
 };
