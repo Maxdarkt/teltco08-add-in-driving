@@ -37,7 +37,7 @@
       <div v-if="userDataChecked" class="rounded-md border border-blue-500 flex flex-col items-center mt-4 p-4">
         <h3 class="w-full text-center text-md">Utilisateur sélectionné :</h3>
         <!-- display the user selected and button "edit document" -->
-        <div v-if="userDataInfos.isPresent && medicalExaminationChecked" class="w-full flex flex-col items-center">
+        <div v-if="userDataInfos.isPresent" class="w-full flex flex-col items-center">
           <p class="w-full text-center text-blue-600 mt-2">
             {{ userDataInfos.lastName }} {{ userDataInfos.firstName }}
           </p>
@@ -47,14 +47,14 @@
           <button v-if="generateCard" class="bg-blue-600 text-gray-200 py-2 px-3 rounded-md transition duration-500 hover:bg-blue-800 hover:text-gray-50 mt-4" @click="generateUserCertificate">
             Générer la carte
           </button>
+          <p v-if="!medicalExaminationChecked" class="text-sm text-red-500 mt-4">
+            Attention ! {{ userDataInfos.lastName }} {{ userDataInfos.firstName }} n'a pas de date de visite médicale valide.
+          </p>
         </div>
         <!-- error message -->
         <div v-else>
           <p v-if="!userDataInfos.isPresent" class="text-sm text-red-500">
             {{ userDataInfos.lastName }} {{ userDataInfos.firstName }} ne fait plus parti des effectifs.
-          </p>
-          <p v-else-if="!medicalExaminationChecked" class="text-sm text-red-500">
-            {{ userDataInfos.lastName }} {{ userDataInfos.firstName }} n'a pas de date de visite médicale valide.
           </p>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default {
       dateAuthorization: Date.now(),
       generateCard: false,
       keyDataInfos : ["isPresent", "team", "lastName", "firstName", "position", "company" ],
-      keyDataDates: [ "workAtHeight", "AIPR", "shotCrete", "scaffoldingReception", "R482CatA", "R482CatB1", "R482CatB2", "R482CatB3", "R482CatC2", "R482CatC1", "R3725", "R482CatC3", "R482CatD", "R482CatE", "R482CatF", "R482CatG", "OptionTMS", "OptionWinch", "R486CatA1A", "R486CatB1B", "R486CatA3A", "R486CatB3B", "R483CatB1B", "R483CatA1A", "R483CatA2A", "R483CatB2B", "R484Cat1", "R484Cat2", "R487Cat1", "R487Cat2", "R487Cat3", "R489Cat1A", "R489Cat1B", "R489Cat2A", "R489Cat2B", "R489Cat3", "R489Cat4", "R489Cat5", "R489Cat6", "R489Cat7", "R485Cat1", "R485Cat2", "R490", "optionTruck" ],
+      keyDataDates: [ "workAtHeight", "AIPR", "shotCrete", "scaffoldingReception", "R482CatA", "R482CatB1", "R482CatB2", "R482CatB3", "R482CatC2", "R482CatC1", "R3725", "R482CatC3", "R482CatD", "R482CatE", "optionTruck", "R482CatF", "R482CatG", "OptionTMS", "OptionWinch", "R486CatA1A", "R486CatB1B", "R486CatA3A", "R486CatB3B", "R483CatB1B", "R483CatA1A", "R483CatA2A", "R483CatB2B", "R484Cat1", "R484Cat2", "R487Cat1", "R487Cat2", "R487Cat3", "R489Cat1A", "R489Cat1B", "R489Cat2A", "R489Cat2B", "R489Cat3", "R489Cat4", "R489Cat5", "R489Cat6", "R489Cat7", "R485Cat1", "R485Cat2", "R490" ],
       arrayCategoriesInfos: [
         {
           children: false,
@@ -195,26 +195,34 @@ export default {
         },
         {
           children: false,
+          name: "optionTruck",
+          value: "",
+          adressText: "D36",
+          adressChecked: "C36",
+          checked: false
+        },
+        {
+          children: false,
           name: "R482CatF",
           value: "",
-          adressText: "C36",
-          adressChecked: "B36",
+          adressText: "C37",
+          adressChecked: "B37",
           checked: false,
         },
         {
           children: false,
           name: "OptionWinch",
           value: "",
-          adressText: "D37",
-          adressChecked: "C37",
+          adressText: "D38",
+          adressChecked: "C38",
           checked: false
         },
         {
           children: false,
           name: "R482CatG",
           value: "",
-          adressText: "C38",
-          adressChecked: "B38",
+          adressText: "C39",
+          adressChecked: "B39",
           checked: false
         },
         {
@@ -228,37 +236,37 @@ export default {
         {
           children: true,
           name: "R486",
-          adressEndText: "H41",
-          adressChecked: "B39",
+          adressEndText: "H42",
+          adressChecked: "B40",
           nbRow: 3,
           checked: false,
           categories: [
             {
               name: "R486CatA1A",
               value: "",
-              adressText: "F40",
-              adressChecked: "E40",
-              checked: false
-            },
-            {
-              name: "R486CatB1B",
-              value: "",
               adressText: "F41",
               adressChecked: "E41",
               checked: false
             },
             {
+              name: "R486CatB1B",
+              value: "",
+              adressText: "F42",
+              adressChecked: "E42",
+              checked: false
+            },
+            {
               name: "R486CatA3A",
               value: "",
-              adressText: "H40",
-              adressChecked: "G40",
+              adressText: "H41",
+              adressChecked: "G41",
               checked: false
             },
             {
               name: "R486CatB3B",
               value: "",
-              adressText: "H41",
-              adressChecked: "G41",
+              adressText: "H42",
+              adressChecked: "G42",
               checked: false
             }
           ]
@@ -266,37 +274,37 @@ export default {
         {
           children: true,
           name: "R483",
-          adressEndText: "K44",
-          adressChecked: "B42",
+          adressEndText: "K45",
+          adressChecked: "B43",
           nbRow: 3,
           checked: false,
           categories: [
             {
               name: "R483CatA1A",
               value: "",
-              adressText: "I43",
-              adressChecked: "H43",
-              checked: false
-            },
-            {
-              name: "R483CatB1B",
-              value: "",
               adressText: "I44",
               adressChecked: "H44",
               checked: false
             },
             {
+              name: "R483CatB1B",
+              value: "",
+              adressText: "I45",
+              adressChecked: "H45",
+              checked: false
+            },
+            {
               name: "R483CatA2A",
               value: "",
-              adressText: "K43",
-              adressChecked: "J43",
+              adressText: "K44",
+              adressChecked: "J44",
               checked: false
             },
             {
               name: "R483CatB2B",
               value: "",
-              adressText: "K44",
-              adressChecked: "J44",
+              adressText: "K45",
+              adressChecked: "J45",
               checked: false
             }
           ]
@@ -435,14 +443,6 @@ export default {
           adressText: "M44",
           adressChecked: "L44",
           checked: false
-        },
-        {
-          children: false,
-          name: "optionTruck",
-          value: "",
-          adressText: "M45",
-          adressChecked: "L45",
-          checked: false
         }
       ],
       medicalExamination: null,
@@ -507,7 +507,6 @@ export default {
         await this.getData("medical", adressMedicalExamination);
         await this.getData("dates", adressDataDates);
       } else {
-        console.log('readData error');
         return;
       }
     },
@@ -576,19 +575,29 @@ export default {
             if(item.children) {
               // we search the child for transform the value in moment
               item.categories.forEach(elt => {
-                if(elt.value !== undefined && elt.value !== null && elt.value !== "") {
+                // we ignore empty value and number < 36526 (OADATE excel => 01/01/2000)
+                if(elt.value !== undefined && elt.value !== null && elt.value !== "" && elt.value > 36526) {
                   elt.value = moment.fromOADate(elt.value);
+                } 
+                else if(elt.value === 2) {
+                  elt.value = moment(Date.now()).add(3, "M");
+                } else {
+                  elt.value = null;
                 }
               })
             } 
             // otherwise, we search in this item for transform the value in moment
             else {
-              if(item.value !== undefined && item.value !== null && item.value !== "") {
+              // we ignore empty value and number < 36526 (OADATE excel => 01/01/2000)
+              if(item.value !== undefined && item.value !== null && item.value !== "" && item.value > 36526 ) {
                 item.value = moment.fromOADate(item.value);
+              } else if(item.value === 2) {
+                item.value = moment(Date.now()).add(3, "M");
+              } else {
+                item.value = null;
               }
             }
           });
-
         this.isTheDateValid(type);
 
       } else if(type === "medical") {
@@ -629,22 +638,19 @@ export default {
     diffDate(momentDateCert, momentDateNow = moment(Date.now())) {
 
       const diffDate = momentDateCert.diff(momentDateNow, 'days');
-
       if(diffDate >= this.limitDate) {
         return true;
       } else {
         return false;
       }
     },
-    editDocument() {
+    async editDocument() {
       const minExamDate = this.calculateMinDate();
       this.writeUserDataInfos(minExamDate);
-      this.writeUserDataDates();
+      await this.writeUserDataDates();
       setTimeout(() => {
         this.generateCard = true;
       }, 500);
-      console.log(this.userDataInfos);
-      console.log(this.arrayCategoriesInfos);
     },
     calculateMinDate() {
       const arrayValidDate = [];
@@ -671,12 +677,18 @@ export default {
     writeUserDataInfos(minExamDate) {
       window.Excel.run((context) => {
         const ws = context.workbook.worksheets.getItem('TEMPLATE');
-        // write lastName
-        const rangeLastName = ws.getRange("D3");
-        rangeLastName.values = [[this.userDataInfos.lastName]];
-        // write firstName
-        const rangeFirstName = ws.getRange("L3");
-        rangeFirstName.values = [[this.userDataInfos.firstName]];
+        // write lastName document
+        const rangeLastNameDocument = ws.getRange("D3");
+        rangeLastNameDocument.values = [[this.userDataInfos.lastName]];
+        // write firstName document
+        const rangeFirstNameDocument = ws.getRange("L3");
+        rangeFirstNameDocument.values = [[this.userDataInfos.firstName]];
+        // write lastName card
+        const rangeLastNameCard = ws.getRange("D54");
+        rangeLastNameCard.values = [[this.userDataInfos.lastName]];
+        // write firstName card
+        const rangeFirstNameCard = ws.getRange("I54");
+        rangeFirstNameCard.values = [[this.userDataInfos.firstName]];
         // write authorization date
         const dateAuthorizationFormat = moment(this.dateAuthorization).toOADate();
         // S5
@@ -741,9 +753,9 @@ export default {
             }
           })
           // we call write function with adress and value
-          await this.writeUserDataDatesLoop("B39", isCategoryChecked)
-          await this.writeUserDataDatesLoop("C40", isCategoryAChecked)
-          await this.writeUserDataDatesLoop("C41", isCategoryBChecked)
+          await this.writeUserDataDatesLoop("B40", isCategoryChecked)
+          await this.writeUserDataDatesLoop("C41", isCategoryAChecked)
+          await this.writeUserDataDatesLoop("C42", isCategoryBChecked)
         } else if(item.name === "R483") {
           // we define the arrays with different values for filter
           const categoryA = [ "R483CatA1A", "R483CatA2A" ];
@@ -760,9 +772,9 @@ export default {
             }
           })
           // we call write function with adress and value
-          await this.writeUserDataDatesLoop("B42", isCategoryChecked)
-          await this.writeUserDataDatesLoop("C43", isCategoryAChecked)
-          await this.writeUserDataDatesLoop("C44", isCategoryBChecked)
+          await this.writeUserDataDatesLoop("B43", isCategoryChecked)
+          await this.writeUserDataDatesLoop("C44", isCategoryAChecked)
+          await this.writeUserDataDatesLoop("C45", isCategoryBChecked)
         } else if(item.name === "R485") {
           // we define the arrays with different values for filter
           const category = [ "R485Cat1", "R485Cat2" ];
@@ -867,7 +879,6 @@ export default {
       });
     },
     async copyCert(adressOriginal, columnCell, i, nbRows ) {
-      // console.log(adressOriginal, adressFinal);
       await window.Excel.run(async (context) => {
         const ws = context.workbook.worksheets.getItem('TEMPLATE');
         // read 
@@ -879,9 +890,6 @@ export default {
 
         const adressStartFinal = columnCell + (i - nbRows);
         const adressEndFinal = this.getNextChar(columnCell, numberCells) + (i - 1);
-
-        console.log('copyCert info :', adressOriginal, columnCell, i, nbRows)
-        console.log('copyCert paste :', adressStartFinal, adressEndFinal)
 
         // write
         const rangeFinal = ws.getRange(`${adressStartFinal}:${adressEndFinal}`);
