@@ -14,8 +14,13 @@
         </h2>
         <!-- limit date input -->
         <div class="flex flex-col mt-4">
-          <label for="limitDate" class="block mb-2 text-sm font-extralight">Date d'expiration (en jrs) :</label>
+          <label for="limitDate" class="block mb-2 text-sm font-extralight">Ignorer les certifications qui arrivent à expirations dans les x prochains jours :</label>
           <input id="limitDate" type="number" min="0" placeholder="0" v-model="limitDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5" required/>
+        </div>
+        <!-- limit autorization (number 2) input -->
+        <div class="flex flex-col mt-4">
+          <label for="limitDateAutorization" class="block mb-2 text-sm font-extralight">Attribuer une durée d'expiration en mois à une autorisation de conduite sans cerificat (Nombre 2)</label>
+          <input id="limitDateAutorization" type="number" min="0" placeholder="0" v-model="limitDateAutorization" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5" required/>
         </div>
         <!-- date authorization input -->
         <div class="flex flex-col mt-4">
@@ -30,7 +35,12 @@
         </h2>
         <div class="flex flex-col mt-4">
           <label for="row" class="block mb-2 text-sm font-extralight">Entrer le numéro de ligne de la personne :</label>
-          <input id="row" type="number" min="3" placeholder="3" v-model="rowInput" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5" @change="readData()" />
+          <div class="flex items-center space-x-4">
+            <input id="row" type="number" min="3" placeholder="3" v-model="rowInput" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5" />
+            <button class="bg-blue-600 text-gray-200 py-1 px-3 rounded-md transition duration-500 hover:bg-blue-800 hover:text-gray-50" @click="readData()">
+              Selectionner
+            </button>
+          </div>
         </div>
       </div>
       <!-- user selected and button for edit document -->
@@ -63,6 +73,35 @@
           Aucune valeur pour cette ligne
         </p>
       </div>
+      <div class="mt-4 text-xs font-extralight">
+        <p>Légende :</p>
+        <ul class="space-y-2 mt-4">
+          <li class="">
+            Autorisation de conduite pour une personne présente sur le chantier. Colonne A : "Présent"
+          </li>
+          <li class="">
+            Simple alerte sur une visite médicale non valide.
+          </li>
+          <li class="">
+            Ne prend pas en compte les dates &lt; 01/01/2000
+          </li>
+          <li class="">
+            Nombre 1 : souhait de formations
+          </li>
+          <li class="">
+            Nombre 2 : Le chantier autorise la conduite pour x mois. (champ n°2)
+          </li>
+          <li class="">
+            Ne pas renommer les onglets CACES et TEMPLATE
+          </li>
+          <li class="">
+            Ne pas changer l'ordre des colonnes de l'onglet CACES
+          </li>
+          <li class="">
+            Rechercher dans Excel, word, pdf, navigateur ... "ctrl + F"
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -75,6 +114,7 @@ export default {
   data() {
     return {
       limitDate: 7,
+      limitDateAutorization: 3,
       rowInput: 3,
       dateAuthorization: Date.now(),
       generateCard: false,
@@ -576,11 +616,11 @@ export default {
               // we search the child for transform the value in moment
               item.categories.forEach(elt => {
                 // we ignore empty value and number < 36526 (OADATE excel => 01/01/2000)
-                if(elt.value !== undefined && elt.value !== null && elt.value !== "" && elt.value > 36526) {
+                if(elt.value !== undefined && elt.value !== null && elt.value !== "" && elt.value > 36526 && typeof elt.value === 'number') {
                   elt.value = moment.fromOADate(elt.value);
                 } 
                 else if(elt.value === 2) {
-                  elt.value = moment(Date.now()).add(3, "M");
+                  elt.value = moment(Date.now()).add(this.limitDateAutorization, "M");
                 } else {
                   elt.value = null;
                 }
@@ -589,10 +629,10 @@ export default {
             // otherwise, we search in this item for transform the value in moment
             else {
               // we ignore empty value and number < 36526 (OADATE excel => 01/01/2000)
-              if(item.value !== undefined && item.value !== null && item.value !== "" && item.value > 36526 ) {
+              if(item.value !== undefined && item.value !== null && item.value !== "" && item.value > 36526 && typeof item.value === 'number') {
                 item.value = moment.fromOADate(item.value);
               } else if(item.value === 2) {
-                item.value = moment(Date.now()).add(3, "M");
+                item.value = moment(Date.now()).add(this.limitDateAutorization, "M");
               } else {
                 item.value = null;
               }

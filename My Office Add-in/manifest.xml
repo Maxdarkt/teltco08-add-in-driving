@@ -122,14 +122,14 @@
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!" />
+        <bt:String id="GetStarted.Title" DefaultValue="Vous pouvez commencer à utiliser votre complément !" />
         <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group" />
         <bt:String id="TaskpaneButton.Label" DefaultValue="Autorisation de conduite" />
       </bt:ShortStrings>
       <!-- LongStrings max characters==250. -->
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Le compélment a été chargé avec succès. Cliquez sur le logo 'Autorisation de conduite' dans le ruban de l'accueil."  />
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Clicquez sur Autorisation de conduite" />
+        <bt:String id="GetStarted.Description" DefaultValue="Le complément a été chargé avec succès. Cliquez sur le logo 'Autorisation de conduite' dans le ruban de l'accueil."  />
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Cliquez sur Autorisation de conduite" />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
